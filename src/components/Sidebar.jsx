@@ -36,3 +36,4 @@ const Sidebar=({open,onClose})=>{
     </aside>
     </>)
 }
+export default Sidebar;
