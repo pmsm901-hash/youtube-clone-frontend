@@ -36,7 +36,7 @@ const Login=()=>{
             setLoading(false);
         }
     }
-};
+
 return(
         <div className="auth-page">
             <div className="auth-card">
@@ -64,4 +64,5 @@ return(
             </div>
         </div>
 );
+};
 export default Login;

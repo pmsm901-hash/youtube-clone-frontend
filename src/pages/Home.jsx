@@ -22,7 +22,7 @@ const Home=({search,setSearch})=>{
     useEffect(()=>{
         fectchVideos();
     },[search,selectedCategory]);
-}
+
 
 const fetchVideos=async()=>{
     try
@@ -83,5 +83,5 @@ return(
                 </div>
             </main>
 )
-
+}
 export default Home;
