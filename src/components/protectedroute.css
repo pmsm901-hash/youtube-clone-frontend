@@ -1,49 +1,51 @@
 /* loading screen */
 
-.loading-screen{
-    width:100%;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#ffffff;
-    color:#0f0f0f;
-    font-size:18px;
-    font-weight:500;
+.loading-screen {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #0f0f0f;
+    font-size: 18px;
+    font-weight: 500;
 }
 
 /* loading animation */
 
-.loading-screen::after{
-    content:"";
-    width:22px;
-    height:22px;
-    margin-left:10px;
-    border:3px solid #e5e5e5;
-    border-top-color:#ff0000;
-    border-radius:100%;
-    animation:loading-spin 0.3s linear infinite;
+.loading-screen::after {
+    content: "";
+    width: 22px;
+    height: 22px;
+    margin-left: 10px;
+    border: 3px solid #e5e5e5;
+    border-top-color: #ff0000;
+    border-radius: 100%;
+    animation: loading-spin 0.3s linear infinite;
 }
 
-@keyframes loading-spin{
-    from{
-        transform:rotate(0deg);
+@keyframes loading-spin {
+    from {
+        transform: rotate(0deg);
     }
-    to{
-        transform:rotate(360deg);
+
+    to {
+        transform: rotate(360deg);
     }
 }
 
 /* responsive in tablet */
 
-@media(max-width:768px){
-    .loading-screen{
-        font-size:16px;
+@media(max-width:768px) {
+    .loading-screen {
+        font-size: 16px;
     }
-    .loading-screen::after{
-        width:20px;
-        height:20px;
-        border-width:3px;
+
+    .loading-screen::after {
+        width: 20px;
+        height: 20px;
+        border-width: 3px;
     }
 }
 
@@ -51,27 +53,29 @@
    MOBILE
 ================================ */
 
-@media(max-width:480px){
-    .loading-screen{
-        min-height:100dvh;
-        font-size:15px;
+@media(max-width:480px) {
+    .loading-screen {
+        min-height: 100dvh;
+        font-size: 15px;
     }
-    .loading-screen::after{
-        width:18px;
-        height:18px;
-        margin-left:8px;
-        border-width:2px;
+
+    .loading-screen::after {
+        width: 18px;
+        height: 18px;
+        margin-left: 8px;
+        border-width: 2px;
     }
 }
 
 /* responsive in small mobile */
 
-@media(max-width:360px){
-    .loading-screen{
-        font-size:14px;
+@media(max-width:360px) {
+    .loading-screen {
+        font-size: 14px;
     }
-    .loading-screen::after{
-        width:16px;
-        height:16px;
+
+    .loading-screen::after {
+        width: 16px;
+        height: 16px;
     }
 }

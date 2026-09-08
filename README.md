@@ -1,16 +1,54 @@
-# React + Vite
+# YouTube Clone - Frontend
+ 
+A responsive Youtube clone frontend built using React.js and Vite.The project provides a youtube style interface with autentication,video searching,category filtering,video playback,comments,likes,dislikes and channel management.
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+# Features
+ 
+ - Youtube style responsive header
+ - Hamburger menu and sidebar
+ - User registration and login
+ - JWT based authentication
+ - Protected routes
+ - Search Videos by title
+ - Category-based filtering
+ - Responsive video grid
+ - Video thumbnail,title,channel & views
+ - Video player page
+ - Like & Dislike functionality
+ - Add comments
+ - Edit comments
+ - Delete comments
+ - User Channel Page
+ - Upload Videos
+ - Responsive design for desktop,mobile & tablet
+ - Backend API integration using Axios
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## React Compiler
+# Techonologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React.js
+- Vite
+- React Router DOM
+- Axios
+- React Icons
+- Javascript
+- HTML5
+- CSS
 
-## Expanding the Oxlint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+# Install Dependencies
+  
+  npm install
+
+# Environment Variables
+
+ VITE_API_URL=http://localhost:8080/api 
+
+# Run the project
+ 
+ npm run dev
+ 
+# Github Repoisitory Link
+
+ https://github.com/pmsm901-hash/youtube-clone-frontend

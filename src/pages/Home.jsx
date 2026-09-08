@@ -11,7 +11,6 @@ const Home = () => {
   const [error, setError] = useState("");
 
   const [selectedCategory, setSelectedCategory] = useState("All");
-  
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -63,9 +62,9 @@ const Home = () => {
       setLoading(false);
     }
   };
-  const handleCategoryChange=(category)=>{
+  const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-  }
+  };
 
   const handleClearSearch = () => {
     setSearchParams({});

@@ -63,8 +63,6 @@ const Comment = ({ comment, onUpdate, onDelete }) => {
 
   return (
     <div className="comment">
-     
-
       <img
         src={comment.user?.avatar || "https://i.pravatar.cc/100"}
         alt={comment.user?.username || "User"}

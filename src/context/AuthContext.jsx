@@ -1,90 +1,80 @@
-import {  createContext,useContext,useEffect,useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 import api from "../services/api";
 
-const AuthContext=createContext();
-export const AuthProvider=({children})=>{
-
-    const[user,setUser]=useState(null);
-    const[loading,setLoading]=useState(true);
-    useEffect(()=>{
-        const token=localStorage.getItem("youtube_token");
-        if(!token)
-        {
-            setLoading(false);
-            return;
-        }
-        //getting current user
-        const getCurrentUser=async()=>{
-            try
-            {
-                const response=await api.get("/auth/me");
-                if(response.data.success)
-                {
-                    setUser(response.data.user);
-                }
-                else
-                {
-                    localStorage.removeItem("youtube_token");
-                    setUser(null);
-                }
-
-            }
-            catch(error)
-            {
-                    console.log("Authentication failed");
-                    localStorage.removeItem("youtube_token");
-                    setUser(null);
-            }
-            finally
-            {
-                 setLoading(false);
-            }
-            
-        };
-        getCurrentUser();
-        
-
-    },[]);
-
-    //login a user
-    const login=async(email,password)=>{
-        const response=await api.post("/auth/login",{email,password});
-        if(response.data.success)
-        {
-            localStorage.setItem("youtube_token",response.data.token);
-            setUser(response.data.user);
-
-        }
-        return response.data;
-
-    };
-
-    //registering a user
-    const register=async(username,email,password)=>{
-        const response=await api.post("/auth/register",{username,email,password});
-         if(response.data.success){
-            if(response.data.token){
-                localStorage.setItem("youtube_token",response.data.token);
-            }
-
-            if(response.data.user){
-                setUser(response.data.user);
-            }
-        }
-
-        return response.data;
+const AuthContext = createContext();
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const token = localStorage.getItem("youtube_token");
+    if (!token) {
+      setLoading(false);
+      return;
     }
-
-    //logout a user
-    const logout=()=>{
+    //getting current user
+    const getCurrentUser = async () => {
+      try {
+        const response = await api.get("/auth/me");
+        if (response.data.success) {
+          setUser(response.data.user);
+        } else {
+          localStorage.removeItem("youtube_token");
+          setUser(null);
+        }
+      } catch (error) {
+        console.log("Authentication failed");
         localStorage.removeItem("youtube_token");
         setUser(null);
+      } finally {
+        setLoading(false);
+      }
     };
+    getCurrentUser();
+  }, []);
 
-    return (<AuthContext.Provider value={{user,loading,login,register,logout}}>{children}</AuthContext.Provider>)
+  //login a user
+  const login = async (email, password) => {
+    const response = await api.post("/auth/login", { email, password });
+    if (response.data.success) {
+      localStorage.setItem("youtube_token", response.data.token);
+      setUser(response.data.user);
+    }
+    return response.data;
+  };
 
+  //registering a user
+  const register = async (username, email, password) => {
+    const response = await api.post("/auth/register", {
+      username,
+      email,
+      password,
+    });
+    if (response.data.success) {
+      if (response.data.token) {
+        localStorage.setItem("youtube_token", response.data.token);
+      }
+
+      if (response.data.user) {
+        setUser(response.data.user);
+      }
+    }
+
+    return response.data;
+  };
+
+  //logout a user
+  const logout = () => {
+    localStorage.removeItem("youtube_token");
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
-export const useAuth=()=>{
-    return useContext(AuthContext);
-}
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
