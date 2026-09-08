@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import "./videocard.css";
+
 const formatViews=(views)=>{
     if(views>=1000000)
     {
@@ -17,14 +19,14 @@ const formatDate=(date)=>{
 }
 const VideoCard=({video})=>{
     return(
-        <Link to ={`video/${video._id}`} className="video-card">
+        <Link to ={`/video/${video._id}`} className="video-card">
             <div className="thumbnail-container">
                 <img src={video.thumbnailUrl} alt={video.title} className="video-thumbnail"></img>
             </div>
             <div className="video-text">
                 <h3>{video.title}</h3>
                 <p className="channel-name">
-                    {video.channel ?.channelName || "Unknown Channel"}
+                    {video.channel?.channelName || "Unknown Channel"}
                 </p>
                 <p className="video-meta">
                     {formatViews(video.views)}{"."}{formatDate(video.createdAt)}

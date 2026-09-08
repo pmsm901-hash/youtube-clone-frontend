@@ -3,6 +3,7 @@ import { Link,useParams } from "react-router-dom";
 import { FiEdit2,FiTrash2,FiPlus } from "react-icons/fi";
 import api from "../services/api"
 import { useAuth } from "../context/AuthContext";
+import "./channel.css";
 
 const Channel=()=>{
     const {id}=useParams();
@@ -15,7 +16,7 @@ const Channel=()=>{
     const [editTitle,setEditTitle]=useState("");
     const [editDescription,setEditDescription]=useState("");
     const [category,setCategory]=useState("Coding");
-    const [editTumbnail,setEditThumbnail]=useState("");
+    const [editThumbnail,setEditThumbnail]=useState("");
 
     useEffect(()=>{
         loadChannel();
@@ -69,7 +70,7 @@ const Channel=()=>{
         e.preventDefault();
         try
         {
-            await api.put(`/video/${editingVideo._id}`,{title:editTitle,description:editDescription,category:category,thumbnailUrl:editTumbnail});
+            await api.put(`/video/${editingVideo._id}`,{title:editTitle,description:editDescription,category:category,thumbnailUrl:editThumbnail});
             setEditingVideo(null);
             await loadChannel();
         }
@@ -120,7 +121,7 @@ const Channel=()=>{
                     {isOwner && (<Link to="/upload" className="primary-button">Upload Your First Video</Link>)}
                 </div>
             ):(<div className="channel-video-grid">
-                {channel.videos?.map((video)=>{
+                {channel.videos.map((video)=>(
                     <div className="channel-video-card" key={video._id}>
                         <Link to={`/video/${video._id}`}>
                         <img src={video.thumbnailUrl} alt={video.title}/>
@@ -136,7 +137,7 @@ const Channel=()=>{
                                 )}
                         </div>
                     </div>
-                })}
+                ))}
 
             </div>)}
             {editingVideo && (<div className="modal-overlay">

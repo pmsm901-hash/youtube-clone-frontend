@@ -1,4 +1,4 @@
-import { Children, createContext,useContext,useEffect,useState } from "react";
+import {  createContext,useContext,useEffect,useState } from "react";
 
 import api from "../services/api";
 
@@ -23,12 +23,18 @@ export const AuthProvider=({children})=>{
                 {
                     setUser(response.data.user);
                 }
+                else
+                {
+                    localStorage.removeItem("youtube_token");
+                    setUser(null);
+                }
 
             }
             catch(error)
             {
                     console.log("Authentication failed");
                     localStorage.removeItem("youtube_token");
+                    setUser(null);
             }
             finally
             {
@@ -47,14 +53,26 @@ export const AuthProvider=({children})=>{
         if(response.data.success)
         {
             localStorage.setItem("youtube_token",response.data.token);
-            setUser(response.data.User);
+            setUser(response.data.user);
+
         }
         return response.data;
+
     };
 
     //registering a user
     const register=async(username,email,password)=>{
         const response=await api.post("/auth/register",{username,email,password});
+         if(response.data.success){
+            if(response.data.token){
+                localStorage.setItem("youtube_token",response.data.token);
+            }
+
+            if(response.data.user){
+                setUser(response.data.user);
+            }
+        }
+
         return response.data;
     }
 
@@ -62,7 +80,6 @@ export const AuthProvider=({children})=>{
     const logout=()=>{
         localStorage.removeItem("youtube_token");
         setUser(null);
-        window.location.href="/";
     };
 
     return (<AuthContext.Provider value={{user,loading,login,register,logout}}>{children}</AuthContext.Provider>)

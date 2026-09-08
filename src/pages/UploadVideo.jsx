@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import "./uploadvideo.css";
 
 const categories=["Music","Gaming","Coding","News","Sports","Education","Entertainment"];
 
 const UploadVideo=({channelId})=>{
     const navigate=useNavigate();
     const [title,setTitle]=useState("");
-    const [descrition,setDescription]=useState("");
+    const [description,setDescription]=useState("");
     const [videoUrl,setVideoUrl]=useState("");
     const [thumbnailUrl,setThumbnailUrl]=useState("");
     const [category,setCategory]=useState("Coding");
@@ -15,6 +16,7 @@ const UploadVideo=({channelId})=>{
     const [loading,setLoading]=useState(false);
 
     const handleSubmit=async(e)=>{
+        console.log("CHANNEL ID:",channelId);
         e.preventDefault();
         setError("");
         if(!title || !videoUrl || !thumbnailUrl || !channelId)
@@ -25,7 +27,7 @@ const UploadVideo=({channelId})=>{
         try
         {
             setLoading(true);
-            await api.post("/videos",{title,descrition,videoUrl,thumbnailUrl,category,channelId});
+            await api.post("/videos",{title,description,videoUrl,thumbnailUrl,category,channelId});
             navigate("/channel");
         }
         catch(error)
@@ -51,7 +53,7 @@ const UploadVideo=({channelId})=>{
                 <label> Video Title *</label>
                 <input type="text" placeholder="Enter Video Title" value={title} onChange={(e)=>setTitle(e.target.value)}/>
                 <label>Descriotion</label>
-                <textarea placeholder="Describe your Video" value={descrition} onChange={(e)=>setDescription(e.target.value)}/>
+                <textarea placeholder="Describe your Video" value={description} onChange={(e)=>setDescription(e.target.value)}/>
                 <label>Video URL *</label>
                 <input type="url" placeholder="https://example.com/video.mp4" value={videoUrl} onChange={(e)=>setVideoUrl(e.target.value)}/>
                 <label>Thumbnail URL *</label>
@@ -62,7 +64,7 @@ const UploadVideo=({channelId})=>{
                     <option key={item} value={item}>{item}</option>
                     )}
                 </select>
-                <button className="primary-button" type="submit" onSubmit={handleSubmit} disabled={loading}>
+                <button className="primary-button" type="submit"  disabled={loading}>
                     {loading ? "Uploading Video...." : "Upload Video"}
                 </button>
                 </form>

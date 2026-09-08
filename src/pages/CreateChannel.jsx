@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
+import "./createchannel.css";
 const CreateChannel=()=>{
     const navigate=useNavigate();
     const [channelName,setChannelName]=useState("");
@@ -25,7 +26,8 @@ const CreateChannel=()=>{
             const response=await api.post("/channels",{channelName,description,channelBanner,channelAvatar});
             if(response.data.success)
             {
-                navigate("/channel");
+               alert("channel Created Successfully....");
+                navigate(`/channel/${response.data.channel._id}`);
             }
         }
         catch(error)
