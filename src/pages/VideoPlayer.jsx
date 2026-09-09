@@ -126,6 +126,10 @@ const VideoPlayer = () => {
           controls
           poster={video.thumbnailUrl}
           src={video.videoUrl}
+           onError={(e) => {
+    console.error("VIDEO PLAY ERROR:", e);
+    console.error("VIDEO URL:", video.videoUrl);
+  }}
         />
       </div>
       <h1 className="video-title">{video.title}</h1>
